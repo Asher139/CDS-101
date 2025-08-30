@@ -1,0 +1,49 @@
+---
+title: "Assignment 2 MinJae Jo"
+author: "MinJae Jo"
+date: "2025-08-29"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+head(penguins)
+#> # A tibble: 6 × 8
+#>   species island bill_length_mm bill_depth_mm flipper_length_… body_mass_g sex  
+#>   <fct>   <fct>           <dbl>         <dbl>            <int>       <int> <fct>
+#> 1 Adelie  Torge…           39.1          18.7              181        3750 male 
+#> 2 Adelie  Torge…           39.5          17.4              186        3800 fema…
+#> 3 Adelie  Torge…           40.3          18                195        3250 fema…
+#> 4 Adelie  Torge…           NA            NA                 NA          NA <NA> 
+#> 5 Adelie  Torge…           36.7          19.3              193        3450 fema…
+#> 6 Adelie  Torge…           39.3          20.6              190        3650 male 
+#> # … with 1 more variable: year <int>
+
+
+head(penguins_raw)
+#> # A tibble: 6 × 17
+#>   studyName `Sample Number` Species          Region Island Stage `Individual ID`
+#>   <chr>               <dbl> <chr>            <chr>  <chr>  <chr> <chr>          
+#> 1 PAL0708                 1 Adelie Penguin … Anvers Torge… Adul… N1A1           
+#> 2 PAL0708                 2 Adelie Penguin … Anvers Torge… Adul… N1A2           
+#> 3 PAL0708                 3 Adelie Penguin … Anvers Torge… Adul… N2A1           
+#> 4 PAL0708                 4 Adelie Penguin … Anvers Torge… Adul… N2A2           
+#> 5 PAL0708                 5 Adelie Penguin … Anvers Torge… Adul… N3A1           
+#> 6 PAL0708                 6 Adelie Penguin … Anvers Torge… Adul… N3A2           
+#> # … with 10 more variables: `Clutch Completion` <chr>, `Date Egg` <date>,
+#> #   `Culmen Length (mm)` <dbl>, `Culmen Depth (mm)` <dbl>,
+#> #   `Flipper Length (mm)` <dbl>, `Body Mass (g)` <dbl>, Sex <chr>,
+#> #   `Delta 15 N (o/oo)` <dbl>, `Delta 13 C (o/oo)` <dbl>, Comments <chr>
+
+str(penguins)
+#> tibble [344 × 8] (S3: tbl_df/tbl/data.frame)
+#>  $ species          : Factor w/ 3 levels "Adelie","Chinstrap",..: 1 1 1 1 1 1 1 1 1 1 ...
+#>  $ island           : Factor w/ 3 levels "Biscoe","Dream",..: 3 3 3 3 3 3 3 3 3 3 ...
+#>  $ bill_length_mm   : num [1:344] 39.1 39.5 40.3 NA 36.7 39.3 38.9 39.2 34.1 42 ...
+#>  $ bill_depth_mm    : num [1:344] 18.7 17.4 18 NA 19.3 20.6 17.8 19.6 18.1 20.2 ...
+#>  $ flipper_length_mm: int [1:344] 181 186 195 NA 193 190 181 195 193 190 ...
+#>  $ body_mass_g      : int [1:344] 3750 3800 3250 NA 3450 3650 3625 4675 3475 4250 ...
+#>  $ sex              : Factor w/ 2 levels "female","male": 2 1 1 NA 1 2 1 2 NA NA ...
+#>  $ year             : int [1:344] 2007 2007 2007 2007 2007 2007 2007 2007 2007 2007 ...
