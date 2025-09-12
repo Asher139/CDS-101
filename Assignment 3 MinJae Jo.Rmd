@@ -1,30 +1,79 @@
 ---
-title: "Assignment 3 MinJae Jo"
-author: "MinJae Jo"
+title: "Assignment 3: Volcanic Eruptions"
+author: MinJae Jo
 date: "`r Sys.Date()`"
-output: pdf_document
+documentclass: article
+geometry: margin=1in
+fontsize: 11pt
+output:
+  pdf_document:
+    toc: false
+    df_print: tibble
+    fig_caption: false
+    number_sections: false
+    dev: pdf
+    highlight: tango
+  html_document:
+    theme: default
+    self_contained: true
+    toc: false
+    df_print: tibble
+    fig_caption: false
+    number_sections: false
+    smart: true
+    dev: svg
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+```{r setup, include = FALSE}
+# DO NOT ALTER THIS CHUNK
+knitr::opts_chunk$set(
+  echo = TRUE,
+  eval = TRUE,
+  fig.width = 5,
+  fig.asp = 0.618,
+  out.width = "70%",
+  dpi = 120,
+  fig.align = "center",
+  cache = FALSE
+)
+# Load required packages
+suppressPackageStartupMessages(library(tidyverse))
 ```
 
-## R Markdown
-
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
-
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
-
-```{r cars}
-summary(cars)
+```{r}
+eruptions <- read_csv("eruptions_dataset.csv")
 ```
 
-## Including Plots
+## Exercise 1
+CSV (Comma-Separated Values) is a simple text format that stores data separated by commas. Each row represents one record (observation), and each column represents a variable (attribute). The file size is small and it is easy to read and write in various tools such as Excel, R, and Python, so it is highly compatible. However, if commas are included in the value, attention should be paid to quotation processing, encoding differences, and line modulation problems.
 
-You can also embed plots, for example:
 
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
+## Exercise 2
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+
+## Exercise 3
+
+
+
+## Exercise 4
+
+
+
+## Exercise 5
+
+
+
+## Exercise 6
+
+
+
+## Exercise 7
+
+
+
+## Exercise 8
+
+
+
+## Exercise 9
