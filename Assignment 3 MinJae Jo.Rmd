@@ -107,9 +107,13 @@ ii.
 The new column is added to the last column with the name 'elevation_yards'
 
 ## Exercise 7
-
-
-
+i.
+eruptions %>%
+  filter(damage > 0 & longitude < 0)
+ii.
+eruptions %>%
+  filter(damage > 0 & longitude >= 0)
+  
 ## Exercise 8
 
 
