@@ -86,9 +86,15 @@ eruptions %>%
 iii.
 Depending on the order in which you use it, the sorting results will be different.
 ## Exercise 5
-
-
-
+i.
+```{r}
+eruptions %>%
+  arrange(desc(name))
+```
+ii. 
+eruptions %>%
+  filter(name == "Yellowstone") %>%
+  select(year, month, day, name, location)
 ## Exercise 6
 
 
