@@ -138,3 +138,26 @@ eruptions %>%
   arrange(average_deaths)
 
 ## Exercise 9
+i.
+by_year_country <- eruptions %>%
+  dplyr::group_by(year, country) %>%
+  dplyr::summarise(
+    people_affected = sum(deaths + missing + injuries, na.rm = TRUE),
+    .groups = "drop"
+  )
+  
+  wide_affected <- by_year_country %>%
+  tidyr::pivot_wider(
+    names_from  = year,            
+    values_from = people_affected
+  )
+ii.
+wide_affected_prefixed <- by_year_country %>%
+  tidyr::pivot_wider(
+    names_from   = year,
+    values_from  = people_affected,
+    names_prefix = "yr_"
+  )
+
+wide_affected_prefixed %>%
+  dplyr::select(country, yr_2010)
