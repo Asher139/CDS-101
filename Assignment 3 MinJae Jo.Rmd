@@ -75,9 +75,16 @@ glimpse(eruptions_stored)
 
 
 ## Exercise 4
-
-
-
+i.
+```{r}
+eruptions %>%
+  arrange(year, month)
+```
+ii. 
+eruptions %>%
+  arrange(month, year)
+iii.
+Depending on the order in which you use it, the sorting results will be different.
 ## Exercise 5
 
 
