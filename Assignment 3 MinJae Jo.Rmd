@@ -49,11 +49,29 @@ CSV (Comma-Separated Values) is a simple text format that stores data separated 
 
 
 ## Exercise 2
+i. 103 rows and 16 columns
 
+ii. Each rows shown volcanic eruption event that records of one eruption on a particular volcano on a particular year, month, or day.
 
+iii. Elevation is recorded in meters, so it is a metric system.
 
 ## Exercise 3
+i. 
+```{r}
+library(dplyr)
 
+eruptions %>%
+  select(name, elevation)
+```
+ii. 
+eruptions %>%
+  select(name:elevation)
+'name:elevation' selects all columns from 'name' to 'elevation' based on the order of the columns. Therefore, a total of six columns are output: 'name, location, country, latitude, longitude, elevation'.
+iii.
+eruptions_stored <- eruptions %>%
+  select(name, elevation)
+
+glimpse(eruptions_stored)
 
 
 ## Exercise 4
