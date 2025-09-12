@@ -115,7 +115,26 @@ eruptions %>%
   filter(damage > 0 & longitude >= 0)
   
 ## Exercise 8
-
-
+i.
+eruptions %>%
+  group_by(country) %>%
+  summarize(
+    average_deaths = mean(deaths, na.rm = TRUE)
+  )
+ii.
+eruptions %>%
+  group_by(country) %>%
+  summarize(
+    average_deaths = mean(deaths, na.rm = TRUE),
+    total_deaths = sum(deaths, na.rm = TRUE)
+  )
+iii.
+eruptions %>%
+  group_by(country) %>%
+  summarize(
+    average_deaths = mean(deaths, na.rm = TRUE),
+    total_deaths = sum(deaths, na.rm = TRUE)
+  ) %>%
+  arrange(average_deaths)
 
 ## Exercise 9
