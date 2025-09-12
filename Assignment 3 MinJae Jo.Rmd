@@ -85,6 +85,7 @@ eruptions %>%
   arrange(month, year)
 iii.
 Depending on the order in which you use it, the sorting results will be different.
+
 ## Exercise 5
 i.
 ```{r}
@@ -95,9 +96,15 @@ ii.
 eruptions %>%
   filter(name == "Yellowstone") %>%
   select(year, month, day, name, location)
+  
 ## Exercise 6
-
-
+i.
+eruptions_stored %>%
+  mutate(
+    elevation_yards = elevation * 1.093
+  )
+ii. 
+The new column is added to the last column with the name 'elevation_yards'
 
 ## Exercise 7
 
