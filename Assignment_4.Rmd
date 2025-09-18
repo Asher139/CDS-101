@@ -83,6 +83,25 @@ bikeshare %>%
 
 ## Exercise 4
 
+```{r ex4_boxplot, echo=FALSE, message=FALSE, warning=FALSE}
+# Ensure we have a duration column in minutes
+if (!"duration_min" %in% names(bikeshare)) {
+  bikeshare <- bikeshare %>%
+    dplyr::mutate(duration_min = as.numeric(difftime(ended_at, started_at, units = "mins")))
+}
+
+q95 <- stats::quantile(bikeshare$duration_min, 0.95, na.rm = TRUE)
+
+bikeshare %>%
+  ggplot2::ggplot(ggplot2::aes(x = "", y = duration_min)) +
+  ggplot2::geom_boxplot(outlier.alpha = 0.25, width = 0.25) +
+  ggplot2::coord_cartesian(ylim = c(0, q95)) +
+  ggplot2::labs(
+    title = "Box Plot of Bikeshare Trip Duration",
+    x = NULL,
+    y = "Duration (minutes)"
+  )
+```
 
 
 ## Exercise 5
