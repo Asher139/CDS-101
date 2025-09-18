@@ -215,9 +215,36 @@ bikeshare %>%
   summarize(n = n())
 ```
 ## Exercise 10
-
-
-
+```{r ex10_i, echo=FALSE}
+ggplot(bikeshare, aes(x = duration_min, fill = member_casual)) +
+  geom_histogram(bins = 20, alpha = 0.3, position = "identity") +
+  labs(
+    title = "Ride Duration (minutes) by Rider Type",
+    x = "Duration (minutes)",
+    y = "Count",
+    fill = "Rider Type"
+  )
+```
+```{r ex10_ii, echo=FALSE}
+ggplot(bikeshare, aes(x = duration_min, y = member_casual)) +
+  geom_violin(orientation = "y") +
+  labs(
+    title = "Distribution of Ride Duration by Rider Type",
+    x = "Duration (minutes)",
+    y = "Rider Type"
+  )
+```
+```{r ex10_iii, echo=FALSE}
+ggplot(bikeshare, aes(x = duration_min, y = min_distance)) +
+  geom_bin2d() +
+  labs(
+    title = "Duration vs Minimum Distance (Faceted by Rider Type)",
+    x = "Duration (minutes)",
+    y = "Minimum Distance (meters)"
+  ) +
+  scale_fill_viridis_c(trans = "log") +
+  facet_wrap(~ member_casual)
+```
 ## Exercise 11
 
 
