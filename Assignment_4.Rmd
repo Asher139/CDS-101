@@ -128,8 +128,34 @@ bikeshare <- bikeshare %>%
 ```
 
 ## Exercise 7
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+## Histogram of min_distance
+ggplot(bikeshare, aes(x = min_distance)) +
+  geom_histogram(binwidth = 100, fill = "skyblue", color = "black") +
+  labs(
+    title = "Histogram of Minimum Distance",
+    x = "Minimum Distance (meters)",
+    y = "Count"
+  )
 
+## Boxplot of min_distance
+ggplot(bikeshare, aes(x = "", y = min_distance)) +
+  geom_boxplot(fill = "lightgreen") +
+  labs(
+    title = "Boxplot of Minimum Distance",
+    x = NULL,
+    y = "Minimum Distance (meters)"
+  )
 
+## Violin plot of min_distance
+ggplot(bikeshare, aes(x = "", y = min_distance)) +
+  geom_violin(fill = "orange") +
+  labs(
+    title = "Violin Plot of Minimum Distance",
+    x = NULL,
+    y = "Minimum Distance (meters)"
+  )
+```
 
 ## Exercise 8
 
