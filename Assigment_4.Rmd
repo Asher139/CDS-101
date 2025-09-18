@@ -45,6 +45,9 @@ bikeshare <- readRDS("bikeshare_data.RDS")
 
 ## Exercise 1
 
+**(i) Continuous variables:** start_lat, start_lng  
+**(ii) Categorical variables:** rideable_type, member_casual  
+**(iii) Each row represents:** one bikeshare trip
 
 
 ## Exercise 2
