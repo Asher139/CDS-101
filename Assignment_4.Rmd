@@ -117,8 +117,15 @@ ggplot(bikeshare, aes(x = "", y = duration_min)) +
 Violin plots show a distribution skewed to the right, similar to histograms or boxplots, for the duration of the trip. All three graphs show similar shapes and centers
 
 ## Exercise 6
-
-
+```{r, echo=TRUE}
+bikeshare <- bikeshare %>%
+  mutate(
+    min_distance = distHaversine(
+      cbind(start_lng, start_lat),
+      cbind(end_lng, end_lat)
+    )
+  )
+```
 
 ## Exercise 7
 
