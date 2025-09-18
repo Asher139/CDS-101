@@ -51,9 +51,20 @@ bikeshare <- readRDS("bikeshare_data.RDS")
 
 
 ## Exercise 2
+```{r, echo=FALSE}
+bikeshare <- bikeshare %>%
+  mutate(
+    duration_min = as.numeric(difftime(ended_at, started_at, units = "mins"))
+  )
 
+bikeshare %>%
+  summarise(
+    mean_duration = mean(duration_min, na.rm = TRUE),
+    min_duration = min(duration_min, na.rm = TRUE),
+    max_duration = max(duration_min, na.rm = TRUE)
+  )
 
-
+```
 ## Exercise 3
 
 
