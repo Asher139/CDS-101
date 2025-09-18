@@ -246,7 +246,22 @@ ggplot(bikeshare, aes(x = duration_min, y = min_distance)) +
   facet_wrap(~ member_casual)
 ```
 ## Exercise 11
+```{r ex11, echo=FALSE}
+library(lubridate)
 
+bikeshare %>%
+  mutate(weekday = wday(start_time, label = TRUE)) %>%
+  group_by(member_casual, weekday) %>%
+  summarize(mean_duration = mean(duration_min, na.rm = TRUE)) %>%
+  ggplot(aes(x = weekday, y = mean_duration, fill = member_casual)) +
+  geom_col(position = "dodge") +
+  labs(
+    title = "Average Ride Duration by Day of Week and Rider Type",
+    x = "Day of Week",
+    y = "Average Duration (minutes)",
+    fill = "Rider Type"
+  )
+```
 
 
 
