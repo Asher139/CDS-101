@@ -84,7 +84,6 @@ bikeshare %>%
 ## Exercise 4
 
 ```{r ex4_boxplot, echo=FALSE, message=FALSE, warning=FALSE}
-# Ensure we have a duration column in minutes
 if (!"duration_min" %in% names(bikeshare)) {
   bikeshare <- bikeshare %>%
     dplyr::mutate(duration_min = as.numeric(difftime(ended_at, started_at, units = "mins")))
