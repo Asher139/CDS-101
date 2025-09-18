@@ -188,9 +188,32 @@ bikeshare %>%
   scale_fill_viridis_c(trans = "log")
 ```
 ## Exercise 9
-
-
-
+```{r ex9_i, echo=FALSE}
+bikeshare %>%
+  summarize(
+    mean   = mean(duration_min, na.rm = TRUE),
+    median = median(duration_min, na.rm = TRUE),
+    sd     = sd(duration_min, na.rm = TRUE),
+    min    = min(duration_min, na.rm = TRUE),
+    max    = max(duration_min, na.rm = TRUE)
+  )
+```
+```{r ex9_ii, echo=FALSE}
+bikeshare %>%
+  group_by(member_casual) %>%
+  summarize(
+    mean   = mean(duration_min, na.rm = TRUE),
+    median = median(duration_min, na.rm = TRUE),
+    sd     = sd(duration_min, na.rm = TRUE),
+    min    = min(duration_min, na.rm = TRUE),
+    max    = max(duration_min, na.rm = TRUE)
+  )
+```
+```{r ex9_iii, echo=FALSE}
+bikeshare %>%
+  group_by(member_casual) %>%
+  summarize(n = n())
+```
 ## Exercise 10
 
 
