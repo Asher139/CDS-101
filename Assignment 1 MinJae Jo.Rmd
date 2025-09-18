@@ -75,3 +75,9 @@ Inline code: Two plus two equals `r 2+2`
 ```{r}
 2 + 2
 ```
+
+| Column 1     | Column 2   | Column 3   |
+|--------------|:----------:|-----------:|
+| Left aligned | Centered   | Right      |
+| Cell 3       | Cell 4     | Cell 6     |
+
