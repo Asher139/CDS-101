@@ -158,9 +158,35 @@ ggplot(bikeshare, aes(x = "", y = min_distance)) +
 ```
 
 ## Exercise 8
-
-
-
+```{r ex8_i, echo=FALSE}
+bikeshare %>%
+  ggplot(aes(x = duration_min, y = min_distance)) +
+  geom_point() +
+  labs(title = "Scatter: min_distance vs duration",
+       x = "Duration (minutes)", y = "Minimum Distance (meters)")
+```
+```{r ex8_ii, echo=FALSE}
+bikeshare %>%
+  ggplot(aes(x = duration_min, y = min_distance)) +
+  geom_point(alpha = 0.01) +
+  labs(title = "Scatter (alpha = 0.01)",
+       x = "Duration (minutes)", y = "Minimum Distance (meters)")
+```
+```{r ex8_iii, echo=FALSE}
+bikeshare %>%
+  ggplot(aes(x = duration_min, y = min_distance)) +
+  geom_bin2d() +
+  labs(title = "2D Histogram (bin2d)",
+       x = "Duration (minutes)", y = "Minimum Distance (meters)")
+```
+```{r ex8_iiv, echo=FALSE}
+bikeshare %>%
+  ggplot(aes(x = duration_min, y = min_distance)) +
+  geom_bin2d() +
+  labs(title = "2D Histogram with Log Color Scale",
+       x = "Duration (minutes)", y = "Minimum Distance (meters)") +
+  scale_fill_viridis_c(trans = "log")
+```
 ## Exercise 9
 
 
