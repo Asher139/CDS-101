@@ -67,6 +67,18 @@ bikeshare %>%
 ```
 ## Exercise 3
 
+```{r, echo=FALSE}
+bikeshare <- bikeshare %>%
+  mutate(duration_sec = as.numeric(difftime(ended_at, started_at, units = "secs")))
+
+bikeshare %>%
+  ggplot(aes(x = duration_sec)) +
+  geom_histogram() +
+  labs(
+    title = "Distribution of Bikeshare Trip Duration",
+    x = "Duration (seconds)"
+  )
+```
 
 
 ## Exercise 4
