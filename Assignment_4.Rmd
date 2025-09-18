@@ -104,8 +104,17 @@ bikeshare %>%
 
 
 ## Exercise 5
+```{r ex4_violin, echo=FALSE, message=FALSE, warning=FALSE}
+ggplot(bikeshare, aes(x = "", y = duration_min)) +
+  geom_violin() +
+  labs(
+    title = "Violin Plot of Trip Duration",
+    x = NULL,
+    y = "Duration (minutes)"
+  )
+```
 
-
+Violin plots show a distribution skewed to the right, similar to histograms or boxplots, for the duration of the trip. All three graphs show similar shapes and centers
 
 ## Exercise 6
 
