@@ -41,3 +41,37 @@ subtitle: "GitHub username: Asher139"
 ---
 
 # Hello World!
+## Hello World!
+### Hello World!
+
+*italics* or _italics_  
+**bold** or __bold__  
+***bold and italicized***
+
+- Bullet point item
+- Second item
+    - Sub-list indented by 4 spaces
+    + Different bullet point symbol
+    - Another bullet point symbol
+        * Sub-sub-list
+
+1. Numeric list
+2. Second item
+    i. Roman numeral sub-list
+        a. A sub-sub-list
+
+Consecutive  
+lines  
+become a single paragraph
+
+unless you leave a blank line between them.
+
+[Link](https://www.google.com)
+
+Math equation: $C = 2 \pi r$
+
+Inline code: Two plus two equals `r 2+2`
+
+```{r}
+2 + 2
+```
