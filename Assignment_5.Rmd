@@ -107,8 +107,19 @@ ggplot(covid_long, aes(x = day, y = count, color = category)) +
 
 
 ## Exercise 6
+```{r}
+library(ggplot2)
 
-
+ggplot() +
+  geom_line(data = covid_sim, aes(x = day, y = infectious, color = "Simulated Infectious")) +
+  geom_line(data = covid_real, aes(x = days_in_country, y = current_cases, color = "Actual Current Cases")) +
+  labs(
+    title = "Simulated vs Actual COVID-19 Cases",
+    x = "Days",
+    y = "Number of People"
+  ) +
+  theme_minimal()
+```
 
 
 ## Exercise 7
