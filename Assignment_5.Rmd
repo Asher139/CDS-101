@@ -142,7 +142,42 @@ ggplot() +
 
 ## Exercise 8
 
+```{r}
+days_range   <- 1:250
+susceptible  <- 300000000
+infectious   <- 1
+recovered    <- 0
 
+
+beta  <- 0.35      
+gamma <- 0.125
+N     <- 300000001
+
+for(day in 2:250){
+  susceptible[day] <- susceptible[day - 1] - (beta  * susceptible[day - 1] * infectious[day - 1]) / N
+  infectious[day]  <- infectious[day - 1]  + (beta  * susceptible[day - 1] * infectious[day - 1]) / N - (gamma * infectious[day - 1])
+  recovered[day]   <- recovered[day - 1]   + (gamma * infectious[day - 1])
+}
+
+covid_sim <- tibble(
+  day        = days_range,
+  susceptible = susceptible,
+  infectious  = infectious,
+  recovered   = recovered
+)
+
+
+ggplot() +
+  geom_line(data = covid_sim, aes(x = day, y = infectious, color = "Simulated Infectious")) +
+  geom_line(data = covid_real, aes(x = days_in_country, y = current_cases, color = "Actual Current Cases")) +
+  labs(
+    title = "Simulated vs Actual COVID-19 Cases (log scale, beta adjusted)",
+    x = "Days",
+    y = "Number of People"
+  ) +
+  theme_minimal() +
+  scale_y_log10(labels = trans_format("log10", math_format(10^.x)))
+```
 
 
 ## Academic Integrity statement
