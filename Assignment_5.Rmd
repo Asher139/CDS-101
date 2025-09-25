@@ -50,7 +50,11 @@ days_range <- 1:250
 
 
 ## Exercise 2
-
+```{r}
+susceptible <- 300000000
+infectious  <- 1
+recovered   <- 0
+```
 
 
 
