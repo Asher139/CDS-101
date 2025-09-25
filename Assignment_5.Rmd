@@ -86,8 +86,24 @@ covid_sim <- tibble(
 
 
 ## Exercise 5
+```{r}
+library(ggplot2)
+library(tidyr)
 
+covid_long <- covid_sim %>%
+  pivot_longer(cols = c(susceptible, infectious, recovered),
+               names_to = "category",
+               values_to = "count")
 
+ggplot(covid_long, aes(x = day, y = count, color = category)) +
+  geom_line(size = 1) +
+  labs(
+    title = "Simulated COVID-19 cases from SIR model",
+    x = "Days in USA",
+    y = "Number of People"
+  ) +
+  theme_minimal()
+```
 
 
 ## Exercise 6
