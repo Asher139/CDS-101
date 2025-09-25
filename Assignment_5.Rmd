@@ -73,8 +73,16 @@ for(day in 2:250){
 
 
 ## Exercise 4
+```{r}
+library(tibble)
 
-
+covid_sim <- tibble(
+  day        = days_range,
+  susceptible = susceptible,
+  infectious  = infectious,
+  recovered   = recovered
+)
+```
 
 
 ## Exercise 5
