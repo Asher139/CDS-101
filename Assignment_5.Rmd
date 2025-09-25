@@ -59,8 +59,17 @@ recovered   <- 0
 
 
 ## Exercise 3
+```{r}
+beta  <- 0.25
+gamma <- 0.125
+N     <- 300000001
 
-
+for(day in 2:250){
+  susceptible[day] <- susceptible[day - 1] - (beta  * susceptible[day - 1] * infectious[day - 1]) / N
+  infectious[day]  <- infectious[day - 1]  + (beta  * susceptible[day - 1] * infectious[day - 1]) / N - (gamma * infectious[day - 1])
+  recovered[day]   <- recovered[day - 1]   + (gamma * infectious[day - 1])
+}
+```
 
 
 ## Exercise 4
