@@ -123,8 +123,21 @@ ggplot() +
 
 
 ## Exercise 7
+```{r}
+library(ggplot2)
+library(scales)
 
-
+ggplot() +
+  geom_line(data = covid_sim, aes(x = day, y = infectious, color = "Simulated Infectious")) +
+  geom_line(data = covid_real, aes(x = days_in_country, y = current_cases, color = "Actual Current Cases")) +
+  labs(
+    title = "Simulated vs Actual COVID-19 Cases (log scale)",
+    x = "Days",
+    y = "Number of People"
+  ) +
+  theme_minimal() +
+  scale_y_log10(labels = trans_format("log10", math_format(10^.x)))
+```
 
 
 ## Exercise 8
