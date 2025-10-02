@@ -134,7 +134,19 @@ ggplot(data = yawn_null, aes(x = stat)) +
 
 ## Exercise 11
 
-
-
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+yawn_obs_stat <- experimental_data %>%
+  specify(yawn ~ group, success = "yes") %>%
+  calculate(stat = "diff in props", order = c("Treatment", "Control"))
+```
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+yawn_null %>%
+  get_p_value(obs_stat = yawn_obs_stat, direction = "right")
+```
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+yawn_null %>%
+  visualize() +
+  shade_p_value(obs_stat = yawn_obs_stat, direction = "right")
+```
 
 ## Academic Integrity statement
