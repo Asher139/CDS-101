@@ -76,8 +76,13 @@ systol_urban_frac_model <- lm(Systol ~ urban_frac_life, data = blood_pressure_up
 
 
 ## Exercise 5
+```{r, echo=FALSE}
+systol_urban_frac_model %>%
+  tidy()
 
-
+systol_urban_frac_model %>%
+  glance()
+```
 
 
 ## Exercise 6
