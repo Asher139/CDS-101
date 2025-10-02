@@ -124,7 +124,12 @@ ggplot(data = yawn_null, aes(x = stat)) +
 
 ## Exercise 10
 
-
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+ggplot(data = yawn_null, aes(x = stat)) +
+  geom_histogram(aes(y = ..density..), bins = 30, 
+                 fill = "lightblue", color = "black") +
+  geom_density(color = "red", adjust = 2)
+```
 
 
 ## Exercise 11
