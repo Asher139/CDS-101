@@ -55,36 +55,23 @@ experimental_data <- read_csv("yawn.csv")
 
 ## Exercise 2
 
-
+-iv. The difference in proportions of yawns between the treatment and control groups
 
 
 ## Exercise 3
 
-<!--- Important note! --->
-<!--- RStudio won't try to run code blocks that begin with r instead of ```{r} --->
-<!--- Do not change r to {r} for exercises 4, 5, and 6, otherwise the document won't knit --->
 
-```r
-specify(<variable1> ~ <variable2>, success = "...")
-```
 
 ## Exercise 4
 
-```r
-hypothesize(null = "...")
-```
 
 ## Exercise 5
 
-```r
-generate(reps = ...,  type = "...")
-```
+
 
 ## Exercise 6
 
-```r
-calculate(stat = "...",  order = c("...", "..."))
-```
+
 
 ## Exercise 7
 
