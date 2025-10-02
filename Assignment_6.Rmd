@@ -112,7 +112,8 @@ Yes, the volatility seems almost constant, so this model seems to meet the third
 
 ## Exercise 9
 
-
+i) The residuals are roughly symmetrical around zero.
+ii) Histograms indicate that the residuals are nearly normal, therefore the conditions for near-normal residuals are reasonably met.
 
 
 ## Exercise 10
