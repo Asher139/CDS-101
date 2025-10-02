@@ -45,7 +45,7 @@ blood_pressure <- read_rds("blood_pressure.rds")
 ```
 
 ## Exercise 1
-```{r}
+```{r, echo=FALSE}
 blood_pressure %>%
   pivot_longer(cols = Age:Pulse, names_to = "measurement", values_to = "value") %>%
   ggplot() +
@@ -63,7 +63,10 @@ ii) Forearm and Calf also show positive slopes, but Weight is the largest and mo
 
 ## Exercise 3
 
-
+```{r}
+blood_pressure_updated <- blood_pressure %>%
+  mutate(urban_frac_life = Years / Age)
+```
 
 
 ## Exercise 4
