@@ -57,8 +57,9 @@ blood_pressure %>%
 
 ## Exercise 2
 
+i) Years graph, the blue regression line tilts slightly down. Therefore, there is a weak negative correlation between Years and Systol.
 
-
+ii) Forearm and Calf also show positive slopes, but Weight is the largest and most pronounced. Therefore, the answer is Weight.
 
 ## Exercise 3
 
