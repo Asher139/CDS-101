@@ -60,6 +60,10 @@ experimental_data <- read_csv("yawn.csv")
 
 ## Exercise 3
 
+```{r}
+experimental_data %>%
+  specify(yawn ~ group, success = "yes")
+```
 
 
 ## Exercise 4
