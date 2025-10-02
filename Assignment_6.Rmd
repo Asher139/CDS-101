@@ -118,7 +118,7 @@ ii) Histograms indicate that the residuals are nearly normal, therefore the cond
 
 ## Exercise 10
 
-
+When comparing the two models, the model using the Weight model had a higher R² value than the model using the Urban_frac_life model. This means that the Weight model predicts systolic blood pressure better. Therefore, systol_weight_model seems to explain the data better and be more useful for this analysis.
 
 
 ## Exercise 11
