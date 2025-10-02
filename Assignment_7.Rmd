@@ -60,43 +60,48 @@ experimental_data <- read_csv("yawn.csv")
 
 ## Exercise 3
 
-```{r, echo=FALSE}
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
 experimental_data %>%
-  specify(yawn ~ group, success = "yes")
+  specify(yawn ~ group, success = "yes") %>%
+  head()
 ```
 
 
 ## Exercise 4
 
-```{r, echo=FALSE}
-experimental_data %>%
-  specify(yawn ~ group, success = "yes") %>%
-  hypothesize(null = "independence")
-```
-
-## Exercise 5
-```{r, echo=FALSE}
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
 experimental_data %>%
   specify(yawn ~ group, success = "yes") %>%
   hypothesize(null = "independence") %>%
-  generate(reps = 10000, type = "permute")
+  head()
 ```
-## Exercise 6
-```{r, echo=FALSE}
+
+## Exercise 5
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
 experimental_data %>%
   specify(yawn ~ group, success = "yes") %>%
   hypothesize(null = "independence") %>%
   generate(reps = 10000, type = "permute") %>%
-  calculate(stat = "diff in props", order = c("Treatment", "Control"))
+  head()
+```
+## Exercise 6
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+experimental_data %>%
+  specify(yawn ~ group, success = "yes") %>%
+  hypothesize(null = "independence") %>%
+  generate(reps = 10000, type = "permute") %>%
+  calculate(stat = "diff in props", order = c("Treatment", "Control")) %>%
+  head()
 ```
 
 ## Exercise 7
-```{r, echo=FALSE}
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
 yawn_null <- experimental_data %>%
   specify(yawn ~ group, success = "yes") %>%
   hypothesize(null = "independence") %>%
   generate(reps = 10000, type = "permute") %>%
   calculate(stat = "diff in props", order = c("Treatment", "Control"))
+  head(yawn_null)
 ```
 
 
@@ -107,8 +112,14 @@ yawn_null <- experimental_data %>%
 -(iii) Density plot with smoothing ggplot(yawn_null, aes(x = stat)) + geom_density(adjust = 5)
 
 ## Exercise 9
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+library(ggplot2)
 
+ggplot(data = yawn_null, aes(x = stat)) +
+  geom_histogram(aes(y = ..density..), bins = 30, fill = "lightblue", color = "black") +
+  geom_density(color = "red", adjust = 2)
 
+```
 
 
 ## Exercise 10
