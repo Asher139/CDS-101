@@ -107,7 +107,7 @@ ggplot(systol_urban_frac_df) +
 
 ## Exercise 8
 
-
+Yes, the volatility seems almost constant, so this model seems to meet the third condition.
 
 
 ## Exercise 9
