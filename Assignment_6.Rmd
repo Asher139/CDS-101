@@ -123,11 +123,11 @@ When comparing the two models, the model using the Weight model had a higher R²
 
 ## Exercise 11
 
-The scatterplot of Systol and Weight shows a clear positive linear trend, and the residual histogram is quite symmetric around zero. The scatterplot is consistent, so the assumptions of linearity, normal residuals, and constant variability are reasonably satisfied.
+The scatterplot of Systol and Weight show a clear positive linear trend, and the residual histogram is quite symmetric around zero. The scatterplot is consistent, so the assumptions of linearity, normal residuals, and constant variability are reasonably satisfied.
 
 
 ## Exercise 12
 
-
+The weight model has a higher R(2) and better fulfills the assumption than the Urban_frac_life model, thus accounting for systolic blood pressure more reliably.
 
 ## Academic Integrity statement
