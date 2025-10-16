@@ -177,7 +177,24 @@ ggplot(results_ex1, aes(x = time)) +
 
 
 ## Exercise 3
-
+```{r}
+plot_sir <- function(.data, title) {
+  library(ggplot2)
+  
+  ggplot(.data, aes(x = time)) +
+    geom_line(aes(y = S, color = "Susceptible")) +
+    geom_line(aes(y = I, color = "Infectious")) +
+    geom_line(aes(y = R, color = "Recovered")) +
+    labs(
+      title = title,
+      x = "Time (days)",
+      y = "Number of People",
+      color = "State"
+    ) +
+    theme_minimal()
+}
+plot_sir(results_ex1, "SIR Agent-Based Model Simulation")
+```
 
 
 
