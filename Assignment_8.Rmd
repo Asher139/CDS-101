@@ -260,8 +260,17 @@ plot_sir(results_ex7, "SIR Model with Masking (50% Adoption, 30% Effectiveness)"
 
 
 ## Exercise 8
-
+```{r, echo = FALSE}
+if (file.exists("results_ex8.rds")) {
+  results_ex8 <- readRDS("results_ex8.rds")
+} else {
+  results_ex8 <- run_abm(isolation = TRUE)
+  saveRDS(results_ex8, "results_ex8.rds")
+}
+plot_sir(results_ex8, "SIR Model with Self-Isolation Enabled")
+```
 
 
 
 ## Exercise 9
+```{r, echo = FALSE}
