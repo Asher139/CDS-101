@@ -230,7 +230,15 @@ ggplot() +
 
 
 ## Exercise 6
-
+```{r, echo = FALSE}
+if (file.exists("results_ex6.rds")) {
+  results_ex6 <- readRDS("results_ex6.rds")
+} else {
+  results_ex6 <- run_abm(min_interactions = 5)
+  saveRDS(results_ex6, "results_ex6.rds")
+}
+plot_sir(results_ex6, "SIR Model with Minimum 5 Contacts per Agent")
+```
 
 
 
