@@ -1,0 +1,195 @@
+---
+title: "Assignment 8: Agent-Based Models"
+author: "MinJae Jo"
+date: "`r Sys.Date()`"
+documentclass: article
+geometry: margin=1in
+fontsize: 11pt
+output:
+  pdf_document:
+    toc: false
+    df_print: kable
+    fig_caption: false
+    number_sections: false
+    dev: pdf
+    highlight: tango
+  html_document:
+    theme: default
+    self_contained: true
+    toc: false
+    df_print: kable
+    fig_caption: false
+    number_sections: false
+    smart: true
+    dev: svg
+---
+
+```{r setup, include = FALSE}
+# DO NOT ALTER THIS CHUNK
+knitr::opts_chunk$set(
+  echo = TRUE,
+  eval = TRUE,
+  fig.width = 5,
+  fig.asp = 0.618,
+  out.width = "70%",
+  dpi = 120,
+  fig.align = "center",
+  cache = FALSE
+)
+
+# Load required packages
+suppressPackageStartupMessages(library(tidyverse))
+
+run_abm <- function(
+    population_size = 100,
+    initial_infected = 1,
+    time_steps = 50,
+    base_prob_infection = 0.05,
+    time_to_recover = 10,
+    min_interactions = 1,
+    max_interactions = 10,
+    random = FALSE,
+    masking = FALSE,
+    masking_prob = NA,
+    mask_effectiveness = NA,
+    isolation = FALSE,
+    time_to_isolation = 3
+    ){
+      # Initialize population
+      if (random == FALSE) set.seed(123) # For reproducibility
+      population <- tibble(
+        id = 1:population_size,
+        state = rep("S", population_size),
+        days_infected = rep(0, population_size),
+        superspreader = FALSE,
+        masker = FALSE
+      )
+      if(masking==TRUE){
+        population$masker[sample(population$id, round(population_size*masking_prob))] = TRUE
+      }
+
+      initial_infected_ids <- sample(population$id, initial_infected)
+      population <- population %>%
+        mutate(state = if_else(id %in% initial_infected_ids, "I", state))
+      
+      results <- list()
+      pb <- txtProgressBar(min = 0, max = time_steps, initial = 0, style=3)
+      
+      for (t in 1:time_steps) {
+        gc()
+        setTxtProgressBar(pb,t)
+        # Infection process for each susceptible individual
+        population <- population %>%
+          rowwise() %>%
+          mutate(state = if_else(state == "S", {
+            # Randomly select X number of different people, not including self
+            selected_ids <- sample(
+              population$id[-id],
+              sample(min_interactions:max_interactions,1) # This determines how many, can be changed to distribution
+              )
+            
+            interaction_states <- population$state[selected_ids]
+            infected_contacts <- population %>%
+              ungroup() %>%
+              filter(
+                id %in% selected_ids, 
+                state == "I", 
+                (isolation == FALSE & days_infected > 0) | 
+                  (isolation == TRUE & days_infected > time_to_isolation)
+                )
+            
+            p_uninfected <- infected_contacts %>% 
+              group_by(masker) %>% 
+              summarise(n = n()) %>% 
+              mutate(
+                p = if_else(
+                  masker == FALSE,
+                  base_prob_infection,
+                  base_prob_infection * (1 - mask_effectiveness)
+                  ),
+                p_cumulative_no_infection = (1-p)^n
+                ) %>%
+              summarize(
+                p_uninfected = prod(p_cumulative_no_infection)
+              ) %>%
+              pluck(1)
+            p_infected <- 1 - p_uninfected
+            
+            # The chance to be infected is 1 minus the chance of not being infected.
+            # Infection is assumed to be independent with each interaction.
+            if("I" %in% interaction_states &&
+                runif(1) < p_infected) "I" 
+            else "S"},
+            state))
+        
+        # Recovery process.
+        # at this point just more than 10 days = recovery
+        population <- population %>%
+          rowwise() %>%
+          mutate(days_infected = if_else(state == "I", days_infected + 1, days_infected),
+                  state = if_else(state == "I" & days_infected > time_to_recover, "R", state)) %>%
+          ungroup() # Un-group after row-wise operations
+        
+        # Record results for this time step
+        results[[t]] <- population %>% 
+          count(state) %>% 
+          pivot_wider(names_from = state, values_from = n, values_fill = list(n = 0))
+      }
+      close(pb)
+        
+      results <- bind_rows(results) %>%
+        mutate_all(~replace(., is.na(.), 0)) %>%
+        mutate(time = 1:n())
+}
+```
+
+
+## Exercise 1
+```{r}
+if (file.exists("results_ex1.rds")) {
+  results_ex1 <- readRDS("results_ex1.rds")
+} else {
+  results_ex1 <- run_abm()
+  saveRDS(results_ex1, "results_ex1.rds")
+}
+```
+i. S, I, R
+ii. population_size = 100
+iii. time_steps = 50
+
+## Exercise 2
+
+
+
+
+## Exercise 3
+
+
+
+
+## Exercise 4
+
+
+
+
+## Exercise 5
+
+
+
+
+## Exercise 6
+
+
+
+
+## Exercise 7
+
+
+
+
+## Exercise 8
+
+
+
+
+## Exercise 9
