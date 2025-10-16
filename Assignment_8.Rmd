@@ -199,7 +199,15 @@ plot_sir(results_ex1, "SIR Agent-Based Model Simulation")
 
 
 ## Exercise 4
-
+```{r}
+if (file.exists("results_ex4.rds")) {
+  results_ex4 <- readRDS("results_ex4.rds")
+} else {
+  results_ex4 <- run_abm(base_prob_infection = 0.1)
+  saveRDS(results_ex4, "results_ex4.rds")
+}
+plot_sir(results_ex4, "SIR Model with Higher Infection Probability (0.1)")
+```
 
 
 
