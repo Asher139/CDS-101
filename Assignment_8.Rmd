@@ -158,7 +158,21 @@ ii. population_size = 100
 iii. time_steps = 50
 
 ## Exercise 2
+```{r}
+library(ggplot2)
 
+ggplot(results_ex1, aes(x = time)) +
+  geom_line(aes(y = S, color = "Susceptible")) +
+  geom_line(aes(y = I, color = "Infectious")) +
+  geom_line(aes(y = R, color = "Recovered")) +
+  labs(
+    title = "SIR Agent-Based Model Simulation",
+    x = "Time (days)",
+    y = "Number of People",
+    color = "State"
+  ) +
+  theme_minimal()
+```
 
 
 
