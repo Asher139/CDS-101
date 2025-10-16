@@ -145,7 +145,7 @@ run_abm <- function(
 
 
 ## Exercise 1
-```{r}
+```{r, echo = FALSE}
 if (file.exists("results_ex1.rds")) {
   results_ex1 <- readRDS("results_ex1.rds")
 } else {
@@ -158,7 +158,7 @@ ii. population_size = 100
 iii. time_steps = 50
 
 ## Exercise 2
-```{r}
+```{r, echo = FALSE}
 library(ggplot2)
 
 ggplot(results_ex1, aes(x = time)) +
@@ -177,7 +177,7 @@ ggplot(results_ex1, aes(x = time)) +
 
 
 ## Exercise 3
-```{r}
+```{r, echo = FALSE}
 plot_sir <- function(.data, title) {
   library(ggplot2)
   
@@ -199,7 +199,7 @@ plot_sir(results_ex1, "SIR Agent-Based Model Simulation")
 
 
 ## Exercise 4
-```{r}
+```{r, echo = FALSE}
 if (file.exists("results_ex4.rds")) {
   results_ex4 <- readRDS("results_ex4.rds")
 } else {
@@ -212,7 +212,20 @@ plot_sir(results_ex4, "SIR Model with Higher Infection Probability (0.1)")
 
 
 ## Exercise 5
+```{r, echo = FALSE}
+library(ggplot2)
 
+ggplot() +
+  geom_line(data = results_ex1, aes(x = time, y = I, color = "Infection Prob = 0.05")) +
+  geom_line(data = results_ex4, aes(x = time, y = I, color = "Infection Prob = 0.1")) +
+  labs(
+    title = "Comparison of Infected Populations under Different Infection Probabilities",
+    x = "Time (days)",
+    y = "Number of Infectious People",
+    color = "Simulation"
+  ) +
+  theme_minimal()
+```
 
 
 
