@@ -243,7 +243,19 @@ plot_sir(results_ex6, "SIR Model with Minimum 5 Contacts per Agent")
 
 
 ## Exercise 7
-
+```{r, echo = FALSE}
+if (file.exists("results_ex7.rds")) {
+  results_ex7 <- readRDS("results_ex7.rds")
+} else {
+  results_ex7 <- run_abm(
+    masking = TRUE,
+    masking_prob = 0.5,
+    mask_effectiveness = 0.3
+  )
+  saveRDS(results_ex7, "results_ex7.rds")
+}
+plot_sir(results_ex7, "SIR Model with Masking (50% Adoption, 30% Effectiveness)")
+```
 
 
 
