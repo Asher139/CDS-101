@@ -273,4 +273,6 @@ plot_sir(results_ex8, "SIR Model with Self-Isolation Enabled")
 
 
 ## Exercise 9
-```{r, echo = FALSE}
+-Each simulation shows how much a small change can affect the way the disease spreads. In the base model, the infection spread quickly and almost everyone became infected. The disease spread more quickly as the probability of infection increased or there was more contact with people. This means that small changes in behavior or environment can lead to much larger outbreaks. Mask-wearing and self-isolation models, on the other hand, slowed the spread. Mask-wearing somewhat reduced infections, but isolation worked best. Isolation prevented the disease from spreading to many people. These results show that public measures such as mask-wearing or patient isolation can help control the disease without a complete lockdown.
+
+-In the future, this model may be improved by adding new elements such as vaccines, travel, and population density. It may also verify how well the model matches real data. For example, simulation results may be compared with real-world infection reports. This may make the model more realistic and useful for planning future outbreaks.
