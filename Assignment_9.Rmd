@@ -95,13 +95,45 @@ pregnancy_length %>%
 ```
 
 ## Exercise 4
-
-
-
+```{r, echo=FALSE}
+pregnancy_length %>%
+  specify(prglngth ~ birth_order) %>%
+  hypothesize(null = "independence") %>%
+  calculate(stat = "diff in means", order = c("first", "other"))
+```
+-The test statistic is the difference in average pregnancy length between first and other births.
+The null hypothesis says there is no difference between the two groups.
+The alternative hypothesis says there is some difference.
+I used a two-sided test because the direction of the difference is not known.
 
 ## Exercise 5
+```{r, echo=FALSE}
+# Generate the null distribution using 10,000 simulations
+null_dist <- pregnancy_length %>%
+  specify(prglngth ~ birth_order) %>%
+  hypothesize(null = "independence") %>%
+  generate(reps = 10000, type = "permute") %>%
+  calculate(stat = "diff in means", order = c("first", "other"))
 
+# Get observed statistic (from Exercise 4)
+obs_stat <- 0.0780373  # Replace this if your actual value differs
 
+# Calculate p-value (two-sided test)
+p_val <- null_dist %>%
+  get_p_value(obs_stat = obs_stat, direction = "two-sided")
+
+p_val
+
+# Visualize the null distribution and observed statistic
+null_dist %>%
+  visualize() +
+  shade_p_value(obs_stat = obs_stat, direction = "two-sided") +
+  labs(
+    title = "Null Distribution of Difference in Means",
+    x = "Difference in mean pregnancy length (weeks)",
+    y = "Frequency"
+  )
+```
 
 
 ## Exercise 6
