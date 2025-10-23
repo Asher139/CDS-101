@@ -81,7 +81,18 @@ ggplot(pregnancy_length, aes(x = prglngth, fill = birth_order)) +
 
 
 ## Exercise 3
-
+```{r, echo=FALSE}
+pregnancy_length %>%
+  group_by(birth_order) %>%
+  summarize(
+    mean = mean(prglngth, na.rm = TRUE),
+    median = median(prglngth, na.rm = TRUE),
+    sd = sd(prglngth, na.rm = TRUE),
+    IQR = IQR(prglngth, na.rm = TRUE),
+    min = min(prglngth, na.rm = TRUE),
+    max = max(prglngth, na.rm = TRUE)
+  )
+```
 
 ## Exercise 4
 
