@@ -57,13 +57,30 @@ pregnancy_length <- dplyr::mutate(
 ```
 
 ## Exercise 2
+```{r ex2, echo=FALSE}
+library(ggplot2)
 
-
+# PMF-style overlapping histograms (binwidth = 1), same plot, transparent
+ggplot(pregnancy_length, aes(x = prglngth, fill = birth_order)) +
+  geom_histogram(
+    aes(y = after_stat(count / sum(count))),
+    binwidth = 1,
+    position = "identity",
+    alpha = 0.5,
+    boundary = 0,
+    closed = "left"
+  ) +
+  xlim(27, 46) +
+  labs(
+    title = "Pregnancy length (weeks): first vs. other births",
+    x = "Weeks of gestation",
+    y = "Probability (PMF)",
+    fill = "Birth order"
+  )
+```
 
 
 ## Exercise 3
-
-
 
 
 ## Exercise 4
