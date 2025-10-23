@@ -163,3 +163,13 @@ birth_bootstraps %>%
 
 
 ## Exercise 7
+```{r, echo=FALSE}
+bootstrap_results <- cohens_d_bootstrap(
+  data = pregnancy_length,
+  model = prglngth ~ birth_order
+)
+bootstrap_report(bootstrap_results)
+plot_ci(bootstrap_results)
+
+
+```
