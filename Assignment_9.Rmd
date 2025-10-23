@@ -137,8 +137,29 @@ null_dist %>%
 
 
 ## Exercise 6
+```{r, echo=FALSE}
+birth_bootstraps <- pregnancy_length %>%
+  specify(prglngth ~ birth_order) %>%
+  generate(reps = 10000, type = "bootstrap") %>%
+  calculate(stat = "diff in means", order = c("first", "other"))
 
+bootstrap_ci <- birth_bootstraps %>%
+  get_confidence_interval(level = 0.95, type = "percentile")
 
+bootstrap_ci
+
+obs_stat <- 0.0780373   # replace with your value if different
+(obs_stat >= bootstrap_ci$lower) & (obs_stat <= bootstrap_ci$upper)
+
+birth_bootstraps %>%
+  visualize() +
+  shade_confidence_interval(bootstrap_ci) +
+  labs(
+    title = "Bootstrap distribution of difference in means (95% CI)",
+    x = "Difference in mean pregnancy length (weeks)",
+    y = "Frequency"
+  )
+```
 
 
 ## Exercise 7
