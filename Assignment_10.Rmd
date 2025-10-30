@@ -176,7 +176,26 @@ car_prices %>%
 
 
 ## Exercise 9
-
+```{r, echo=FALSE, fig.width=9, fig.asp=1.6}
+car_prices %>%
+  pivot_longer(
+    cols = c(Make, Model, Trim, Type, Cylinder, Doors, Cruise, Sound, Leather),
+    names_to = "name",
+    values_to = "value",
+    values_transform = list(value = as.factor)   # 숫자형(예: Cylinder, Doors)도 factor로 변환
+  ) %>%
+  ggplot() +
+  geom_boxplot(aes(x = reorder(value, Price, FUN = median), y = Price)) +
+  facet_wrap(~ name, scales = "free_x") +
+  labs(
+    title = "Boxplots of Price by Categorical Variables",
+    x = NULL,
+    y = "Price"
+  ) +
+  theme(
+    axis.text.x = element_text(angle = 45, hjust = 1)
+  )
+```
 
 
 
