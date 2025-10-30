@@ -122,8 +122,17 @@ head(continuous_df)
 
 
 ## Exercise 5
-
-
+```{r, echo=FALSE}
+continuous_df %>%
+  ggplot() +
+  geom_point(mapping = aes(x = pred, y = Price)) +
+  geom_abline(slope = 1, intercept = 0, color = "red") +
+  labs(
+    title = "Observed vs Predicted Prices",
+    x = "Predicted Price",
+    y = "Observed Price"
+  )
+```
 
 
 ## Exercise 6
