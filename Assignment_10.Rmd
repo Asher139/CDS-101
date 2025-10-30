@@ -215,8 +215,31 @@ glance(mixed_model)$r.squared
 
 
 ## Exercise 11
+```{r, echo=FALSE}
+mixed_df <- cars_factor_df %>%
+  add_predictions(mixed_model) %>%
+  add_residuals(mixed_model)
 
+mixed_df %>%
+  ggplot() +
+  geom_point(aes(x = pred, y = Price)) +
+  geom_abline(slope = 1, intercept = 0, color = "red") +
+  labs(title = "Observed vs Predicted (mixed_model)",
+       x = "Predicted Price", y = "Observed Price")
 
+mixed_df %>%
+  ggplot() +
+  geom_point(aes(x = pred, y = resid)) +
+  geom_hline(yintercept = 0, color = "red") +
+  labs(title = "Residuals vs Predicted (mixed_model)",
+       x = "Predicted Price", y = "Residuals")
+
+mixed_df %>%
+  ggplot() +
+  geom_qq(aes(sample = resid)) +
+  geom_qq_line(aes(sample = resid)) +
+  labs(title = "Q-Q Plot of Residuals (mixed_model)")
+```
 
 
 ## Exercise 12
