@@ -162,7 +162,16 @@ continuous_df %>%
 
 
 ## Exercise 8
-
+```{r, echo=FALSE}
+car_prices %>%
+  ggplot() +
+  geom_boxplot(aes(x = reorder(Make, Price, FUN = median), y = Price)) +
+  labs(
+    x = "Make of car",
+    y = "Price",
+    title = "Effect of make of car on price"
+  )
+```
 
 
 
