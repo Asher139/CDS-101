@@ -243,8 +243,10 @@ mixed_df %>%
 
 
 ## Exercise 12
-
-
+```{r, echo=FALSE}
+glance(continuous_model)$r.squared
+glance(mixed_model)$r.squared
+```
 
 
 ## Academic Integrity statement
