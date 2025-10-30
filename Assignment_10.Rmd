@@ -151,7 +151,13 @@ continuous_df %>%
 
 
 ## Exercise 7
-
+```{r, echo=FALSE}
+continuous_df %>%
+  ggplot() +
+  geom_qq(aes(sample = resid)) +
+  geom_qq_line(aes(sample = resid)) +
+  labs(title = "Q-Q Plot of Residuals")
+```
 
 
 
