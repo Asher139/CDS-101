@@ -136,7 +136,17 @@ continuous_df %>%
 
 
 ## Exercise 6
-
+```{r, echo=FALSE}
+continuous_df %>%
+  ggplot() +
+  geom_point(mapping = aes(x = pred, y = resid)) +
+  geom_hline(yintercept = 0, color = "red") +
+  labs(
+    title = "Residuals vs Predicted Prices",
+    x = "Predicted Price",
+    y = "Residuals"
+  )
+```
 
 
 
