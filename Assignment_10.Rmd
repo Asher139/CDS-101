@@ -200,7 +200,17 @@ car_prices %>%
 
 
 ## Exercise 10
+```{r, echo=FALSE}
+cars_factor_df <- car_prices %>%
+  mutate(Cylinder = as.factor(Cylinder))
 
+mixed_model <- lm(Price ~ Mileage + Liter + Cylinder + Make + Type,
+                  data = cars_factor_df)
+
+tidy(mixed_model)
+
+glance(mixed_model)$r.squared
+```
 
 
 
