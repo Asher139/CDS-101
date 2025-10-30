@@ -111,7 +111,13 @@ if (!is_pdf) { p }
 
 
 ## Exercise 4
+```{r, echo=FALSE}
+continuous_df <- car_prices %>%
+  add_predictions(continuous_model) %>%
+  add_residuals(continuous_model)
 
+head(continuous_df)
+```
 
 
 
