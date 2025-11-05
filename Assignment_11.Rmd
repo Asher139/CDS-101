@@ -117,15 +117,12 @@ ggplot(train_df, aes(x = Pclass, fill = did_survive)) +
 
 ## Exercise 5
 ```{r, echo=FALSE}
-# i.
 train_df %>%
   summarize(
     count = n(),
     missing = sum(is.na(Age)),
     fraction_missing = mean(is.na(Age))
   )
-
-# ii.
 train_imputed <- train_df %>%
   mutate(
     age_imputed = if_else(
@@ -134,8 +131,6 @@ train_imputed <- train_df %>%
       false = Age
     )
   )
-
-# iii.
 train_imputed %>%
   summarize(
     missing_age_imputed = sum(is.na(age_imputed))
@@ -144,8 +139,24 @@ train_imputed %>%
 
 
 ## Exercise 6
+```{r, echo=FALSE}
+library(modelr)
 
+model_1 <- glm(Survived ~ age_imputed, data = train_imputed, family = "binomial")
 
+model_1_preds <- train_imputed %>%
+  add_predictions(model_1, type = "response") %>%
+  mutate(outcome = if_else(pred > 0.5, 1, 0))
+
+model_1_preds %>%
+  mutate(
+    correct = if_else(Survived == outcome, 1, 0)
+  ) %>%
+  summarize(
+    total_correct = sum(correct),
+    accuracy = mean(correct)
+  )
+```
 
 
 ## Exercise 7
