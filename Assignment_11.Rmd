@@ -67,14 +67,39 @@ train_df <- train_df %>%
 ```
 
 ## Exercise 2
+```{r, echo=FALSE}
+library(tidyr)
+library(ggplot2)
 
-
-
+train_df %>%
+  pivot_longer(cols = c(Age, Fare), names_to = "variable", values_to = "value") %>%
+  ggplot() +
+  geom_histogram(aes(x = value, fill = did_survive), bins = 30, alpha = 0.7, position = "identity") +
+  facet_wrap(~ variable, scales = "free") +
+  labs(
+    x = "Value",
+    y = "Count",
+    title = "Distributions of Age and Fare by Survival Status",
+    fill = "Survived"
+  )
+```
 
 ## Exercise 3
-
-
-
+```{r, echo=FALSE}
+train_df %>%
+  pivot_longer(cols = c(Pclass, Sex, Parch, SibSp),
+               names_to = "variable",
+               values_to = "value") %>%
+  ggplot() +
+  geom_bar(aes(x = value, fill = did_survive)) +
+  facet_wrap(~ variable, scales = "free") +
+  labs(
+    x = "Category",
+    y = "Count",
+    title = "Categorical Variables and Survival on the Titanic",
+    fill = "Survived"
+  )
+```
 
 ## Exercise 4
 
