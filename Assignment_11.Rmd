@@ -49,9 +49,22 @@ suppressPackageStartupMessages(library(boot))
 
 
 ## Exercise 1
+```{r}
+library(readr)
+library(dplyr)
 
+train_df <- read_csv(
+  file = "train.csv",
+  col_types = cols(
+    Pclass = col_character(),
+    SibSp = col_character(),
+    Parch = col_character()
+  )
+)
 
-
+train_df <- train_df %>%
+  mutate(did_survive = as.logical(Survived))
+```
 
 ## Exercise 2
 
