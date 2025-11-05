@@ -116,8 +116,31 @@ ggplot(train_df, aes(x = Pclass, fill = did_survive)) +
 
 
 ## Exercise 5
+```{r, echo=FALSE}
+# i.
+train_df %>%
+  summarize(
+    count = n(),
+    missing = sum(is.na(Age)),
+    fraction_missing = mean(is.na(Age))
+  )
 
+# ii.
+train_imputed <- train_df %>%
+  mutate(
+    age_imputed = if_else(
+      condition = is.na(Age),
+      true = median(Age, na.rm = TRUE),
+      false = Age
+    )
+  )
 
+# iii.
+train_imputed %>%
+  summarize(
+    missing_age_imputed = sum(is.na(age_imputed))
+  )
+```
 
 
 ## Exercise 6
