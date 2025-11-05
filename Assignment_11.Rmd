@@ -160,8 +160,16 @@ model_1_preds %>%
 
 
 ## Exercise 7
+```{r, echo=FALSE}
+cost <- function(r, pi = 0) {
+  mean(abs(r - round(pi)))
+}
 
+library(boot)
+logistic_cv1 <- cv.glm(train_imputed, model_1, cost, K = 5)
 
+logistic_cv1$delta
+```
 
 
 ## Exercise 8
