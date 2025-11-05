@@ -102,8 +102,17 @@ train_df %>%
 ```
 
 ## Exercise 4
-
-
+```{r, echo=FALSE}
+ggplot(train_df, aes(x = Pclass, fill = did_survive)) +
+  geom_bar() +
+  facet_wrap(~ Sex) +
+  labs(
+    x = "Passenger Class",
+    y = "Count",
+    title = "Survival by Passenger Class and Sex",
+    fill = "Survived"
+  )
+```
 
 
 ## Exercise 5
