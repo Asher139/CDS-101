@@ -173,8 +173,20 @@ logistic_cv1$delta
 
 
 ## Exercise 8
+```{r, echo=FALSE}
+model_2 <- glm(Survived ~ age_imputed + SibSp + Pclass + Sex,
+               data = train_imputed, family = "binomial")
+
+logistic_cv2 <- cv.glm(train_imputed, model_2, cost, K = 5)
+logistic_cv2$delta
 
 
+model_3 <- glm(Survived ~ age_imputed * Pclass * Sex + SibSp,
+               data = train_imputed, family = "binomial")
+
+logistic_cv3 <- cv.glm(train_imputed, model_3, cost, K = 5)
+logistic_cv3$delta
+```
 
 
 ## Bonus Exercise
