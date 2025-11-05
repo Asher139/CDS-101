@@ -60,6 +60,14 @@ va_pop_2010 <- get_decennial(
 )
 ```
 #### Exercise 2
+library(dplyr)
+library(ggplot2)
+
+va_pop_2010 %>%
+  ggplot(aes(fill = value)) +
+  geom_sf() +
+  scale_fill_viridis_c(option = "magma")
+
 
 
 #### Exercise 3
