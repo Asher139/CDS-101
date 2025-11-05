@@ -1,14 +1,44 @@
 ---
-title: "Assignment 2 MinJae Jo"
+title: "Assignment 2 "
 author: "MinJae Jo"
 date: "2025-08-29"
 output: pdf_document
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+```{r setup, include = FALSE}
+# DO NOT ALTER THIS CHUNK
+knitr::opts_chunk$set(
+  echo = TRUE,
+  eval = TRUE,
+  fig.width = 5,
+  fig.asp = 0.618,
+  out.width = "70%",
+  dpi = 120,
+  fig.align = "center",
+  cache = FALSE
+)
+# Load required packages
+suppressPackageStartupMessages(library(tidyverse))
+suppressPackageStartupMessages(library(palmerpenguins))
 ```
 
+## Exercise 1
+
+i. 344 rows and 8 columns
+
+ii. A penguin observation
+
+iii. Species, Island, Sex
+
+iv. bill_length_mn, depth_mn, body_mass_g, and Filpper_length_mn
+
+v. Year
+
+vi. Adelie, Chinstrap, and Gentoo
+
+## Exercise 2
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
 head(penguins)
 #> # A tibble: 6 × 8
 #>   species island bill_length_mm bill_depth_mm flipper_length_… body_mass_g sex  
@@ -20,9 +50,12 @@ head(penguins)
 #> 5 Adelie  Torge…           36.7          19.3              193        3450 fema…
 #> 6 Adelie  Torge…           39.3          20.6              190        3650 male 
 #> # … with 1 more variable: year <int>
+```
 
+## Exercise 3
 
-head(penguins_raw)
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+plot(x = penguins$flipper_length_mm)
 #> # A tibble: 6 × 17
 #>   studyName `Sample Number` Species          Region Island Stage `Individual ID`
 #>   <chr>               <dbl> <chr>            <chr>  <chr>  <chr> <chr>          
@@ -36,8 +69,14 @@ head(penguins_raw)
 #> #   `Culmen Length (mm)` <dbl>, `Culmen Depth (mm)` <dbl>,
 #> #   `Flipper Length (mm)` <dbl>, `Body Mass (g)` <dbl>, Sex <chr>,
 #> #   `Delta 15 N (o/oo)` <dbl>, `Delta 13 C (o/oo)` <dbl>, Comments <chr>
+```
 
-str(penguins)
+## Exercise 4
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+qplot(x = flipper_length_mm, data = penguins)
+qplot(x = flipper_length_mm, data = penguins, bins = 15)
+qplot(x = flipper_length_mm, data = penguins, binwidth = 1)
 #> tibble [344 × 8] (S3: tbl_df/tbl/data.frame)
 #>  $ species          : Factor w/ 3 levels "Adelie","Chinstrap",..: 1 1 1 1 1 1 1 1 1 1 ...
 #>  $ island           : Factor w/ 3 levels "Biscoe","Dream",..: 3 3 3 3 3 3 3 3 3 3 ...
@@ -47,3 +86,4 @@ str(penguins)
 #>  $ body_mass_g      : int [1:344] 3750 3800 3250 NA 3450 3650 3625 4675 3475 4250 ...
 #>  $ sex              : Factor w/ 2 levels "female","male": 2 1 1 NA 1 2 1 2 NA NA ...
 #>  $ year             : int [1:344] 2007 2007 2007 2007 2007 2007 2007 2007 2007 2007 ...
+```

@@ -1,6 +1,10 @@
 ---
 title: "Assignment 1: R Markdown practice"
+<<<<<<< HEAD
 author: "MinJae Jo"
+=======
+author: "FirstName LastName"
+>>>>>>> 165feba (Update)
 date: "`r Sys.Date()`"
 documentclass: article
 geometry: margin=1in
@@ -37,6 +41,7 @@ if (.Platform$OS.type == "unix") {
 ```
 
 ---
+<<<<<<< HEAD
 subtitle: "GitHub username: Asher139"
 ---
 
@@ -81,3 +86,7 @@ Inline code: Two plus two equals `r 2+2`
 | Left aligned | Centered   | Right      |
 | Cell 3       | Cell 4     | Cell 6     |
 
+=======
+subtitle: "GitHub username: `r git_user`"
+---
+>>>>>>> 165feba (Update)
