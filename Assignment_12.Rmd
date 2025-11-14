@@ -134,12 +134,12 @@ test_dl <- dataloader(
 ```{r}
 net <- nn_module(
   initialize = function() {
-    self$fc1 <- nn_linear(784, 128)
+    self$fc1 <- nn_linear(28*28, 128)
     self$fc2 <- nn_linear(128, 10)
   },
   forward = function(x) {
-    x %>% 
-      self$fc1() %>% 
+    x %>%
+      self$fc1() %>%
       nnf_relu() %>%
       self$fc2()
   }
@@ -148,14 +148,12 @@ net <- nn_module(
 
 ## Exercise 7
 ```{r}
-model1 <- setup(
-  net,
-  loss = nn_cross_entropy_loss(),
+model1 <- luz::setup(
+  module = net,
   optimizer = optim_adam,
-  metrics = list(luz_metric_accuracy())
+  loss = nn_cross_entropy_loss()
 )
 ```
-
 ## Exercise 8
 ```{r, echo=FALSE, warning=FALSE}
 fitted1 <- fit(
@@ -179,7 +177,9 @@ The difference from training loss is not significantly widened, so overfitting d
 -Overall, it was a form that showed that the model was being learned stably.
 
 ## Exercise 10
-
-
-
+- The test loss was slightly higher than the training and verification losses. This means that the model does not work well with the new model. This usually occurs because the model sees the training and verification set several times, but the test set is considered completely new. Still, the difference is not significant, so the model does not appear to be severely overfitted.
+```{r, echo=FALSE, warning=FALSE}
+test_results <- evaluate(fitted1, test_dl)
+test_results
+```
 
