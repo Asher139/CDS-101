@@ -157,9 +157,15 @@ model1 <- setup(
 ```
 
 ## Exercise 8
-
-
-
+```{r, echo=FALSE, warning=FALSE}
+fitted1 <- fit(
+  model1,
+  train_dl,
+  epochs = 5,
+  valid_data = valid_dl,
+  verbose = TRUE
+)
+```
 
 ## Exercise 9
 
