@@ -168,9 +168,15 @@ fitted1 <- fit(
 ```
 
 ## Exercise 9
+```{r, echo=FALSE}
+plot(fitted1)
+```
+-Looking at the graph, you can see a pattern in which the training loss steadily descends as the epoch passes.
 
+-The validation loss also decreases overall or shows a similar trend,
+The difference from training loss is not significantly widened, so overfitting does not seem severe.
 
-
+-Overall, it was a form that showed that the model was being learned stably.
 
 ## Exercise 10
 
