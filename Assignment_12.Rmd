@@ -1,0 +1,139 @@
+---
+title: "Assignment 12"
+author: "MinJae Jo"
+date: "`r Sys.Date()`"
+documentclass: article
+geometry: margin=1in
+fontsize: 11pt
+output:
+  pdf_document:
+    toc: false
+    df_print: kable
+    fig_caption: false
+    number_sections: false
+    dev: pdf
+    highlight: tango
+---
+
+```{r setup, include=FALSE}
+# DO NOT ALTER THIS CHUNK
+knitr::opts_chunk$set(
+  echo = TRUE,
+  eval = TRUE,
+  fig.width = 5,
+  fig.asp = 0.618,
+  out.width = "70%",
+  dpi = 120,
+  fig.align = "center",
+  cache = FALSE
+)
+suppressPackageStartupMessages(library(tidyverse))
+library(torch)
+library(torchvision)
+library(luz)
+options(torch.threshold_call_gc = 500)
+
+train_ds <- kmnist_dataset(
+  "imagesk", 
+  download = TRUE,
+  transform = . %>%
+    transform_to_tensor() %>%
+    torch_flatten(start_dim = 2) %>%
+    torch_tensor(requires_grad = TRUE)
+)
+
+test_ds <- kmnist_dataset(
+  "imagesk",
+  download = TRUE,
+  train = FALSE,
+  transform = . %>%
+    transform_to_tensor() %>%
+    torch_flatten(start_dim = 2) %>%
+    torch_tensor(requires_grad = TRUE)
+)
+
+drop_prefix <- function(s) {
+  return( str_extract(s, "\\d+"))
+}
+
+visualize_image <- function(x){
+  batch$x[x] %>%
+    torch_reshape(shape = c(28,28)) %>%
+    as_array() %>%
+    as.data.frame() %>%
+    rename_with(drop_prefix, everything())  %>%
+    mutate(r = row_number(), .before = `1`) %>%
+    pivot_longer(cols = matches("\\d+"), names_to = "c") %>%
+    mutate(
+      c= as.integer(c),
+      value = as.integer(value*255)
+      ) %>%
+    ggplot() +
+      geom_tile(aes(x = c, y = -r, fill = value)) +
+      scale_fill_gradient(low="white", high="black") +
+      labs(title = str_c("Label ", as_array(batch$y[x])), fill="Intensity", x = "", y = "")
+}
+
+train_ds <- dataset_subset(train_ds, indices=1001:2024)
+valid_ds <- dataset_subset(train_ds, indices=1:512)
+test_ds <- dataset_subset(test_ds, indices=1:512)
+gc()
+```
+
+## Exercise 1
+i. 70000
+ii. 28x28
+iii. 10 classes
+
+
+
+## Exercise 2
+```{r}
+train_dl <- dataloader(
+  dataset = train_ds,
+  batch_size = 32,
+  shuffle = TRUE
+)
+```
+
+
+## Exercise 3
+
+
+
+
+## Exercise 4
+
+
+
+
+## Exercise 5
+
+
+
+
+## Exercise 6
+
+
+
+
+## Exercise 7
+
+
+
+
+## Exercise 8
+
+
+
+
+## Exercise 9
+
+
+
+
+## Exercise 10
+
+
+
+
