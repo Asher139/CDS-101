@@ -98,8 +98,11 @@ train_dl <- dataloader(
 
 
 ## Exercise 3
-
-
+```{r, echo=FALSE}
+it <- dataloader_make_iter(train_dl)
+batch <- it$.next()
+dim(batch$x)
+```
 
 
 ## Exercise 4
