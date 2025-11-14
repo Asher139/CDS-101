@@ -131,9 +131,20 @@ test_dl <- dataloader(
 
 
 ## Exercise 6
-
-
-
+```{r}
+net <- nn_module(
+  initialize = function() {
+    self$fc1 <- nn_linear(784, 128)
+    self$fc2 <- nn_linear(128, 10)
+  },
+  forward = function(x) {
+    x %>% 
+      self$fc1() %>% 
+      nnf_relu() %>%
+      self$fc2()
+  }
+)
+```
 
 ## Exercise 7
 
