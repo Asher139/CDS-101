@@ -106,6 +106,10 @@ dim(batch$x)
 
 
 ## Exercise 4
+-The image corresponds to the character “re.”-
+```{r, echo=FALSE, fig.width=5, fig.height=3}
+visualize_image(12)
+```
 
 
 
