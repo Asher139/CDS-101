@@ -115,8 +115,19 @@ visualize_image(12)
 
 
 ## Exercise 5
+```{r}
+valid_dl <- dataloader(
+  dataset = valid_ds,
+  batch_size = 32,
+  shuffle = FALSE
+)
 
-
+test_dl <- dataloader(
+  dataset = test_ds,
+  batch_size = 32,
+  shuffle = FALSE
+)
+```
 
 
 ## Exercise 6
