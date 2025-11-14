@@ -147,9 +147,14 @@ net <- nn_module(
 ```
 
 ## Exercise 7
-
-
-
+```{r}
+model1 <- setup(
+  net,
+  loss = nn_cross_entropy_loss(),
+  optimizer = optim_adam,
+  metrics = list(luz_metric_accuracy())
+)
+```
 
 ## Exercise 8
 
