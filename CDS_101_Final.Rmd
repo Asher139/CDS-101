@@ -74,8 +74,33 @@ summary(college_reduced)
 
 
 ## Visualization
+Summary statistics for graduation rate (C150_4)
+```{r, echo=FALSE, warning=FALSE}
+college_reduced %>%
+  summarise(
+    n_grad = n(),
+    mean_grad = mean(grad_rate_150, na.rm = TRUE),
+    median_grad = median(grad_rate_150, na.rm = TRUE),
+    sd_grad = sd(grad_rate_150, na.rm = TRUE),
+    iqr_grad = IQR(grad_rate_150, na.rm = TRUE),
+    min_grad = min(grad_rate_150, na.rm = TRUE),
+    max_grad = max(grad_rate_150, na.rm = TRUE)
+  )
+```
+Summary statistics for SAT_AVG
+```{r, echo=FALSE, warning=FALSE}
+college_reduced %>%
+  summarise(
+    n_sat = n(),
+    mean_sat = mean(sat_avg, na.rm = TRUE),
+    median_sat = median(sat_avg, na.rm = TRUE),
+    sd_sat = sd(sat_avg, na.rm = TRUE),
+    iqr_sat = IQR(sat_avg, na.rm = TRUE),
+    min_sat = min(sat_avg, na.rm = TRUE),
+    max_sat = max(sat_avg, na.rm = TRUE)
+  )
 
-
+```
 
 
 ## Summary Statistics
