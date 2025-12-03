@@ -52,7 +52,6 @@ set.seed(98261936)
 ```
 
 ## Introduction
-Introduction
 
 For this project, I am looking at the question: “Does the size or competitiveness of a college affect its degree attainment rate?” I chose C150_4 as my response variable because it shows the share of students who finish their degree within 150% of the usual time. It is one of the clearer numbers in the dataset that relates to graduation.
 
@@ -74,7 +73,7 @@ summary(college_reduced)
 
 
 ## Visualization
-Summary statistics for graduation rate (C150_4)
+### Summary statistics for graduation rate (C150_4)
 ```{r, echo=FALSE, warning=FALSE}
 college_reduced %>%
   summarise(
@@ -90,7 +89,8 @@ college_reduced %>%
 -The graduation rate values range from 0 to 1. The median is around 0.49, so about half of the colleges graduate less than half of their students on time. This suggests that many schools are kind of in the middle rather than extremely high or low.
 
 
-Summary statistics for SAT_AVG
+
+### Summary statistics for SAT_AVG
 ```{r, echo=FALSE, warning=FALSE}
 college_reduced %>%
   summarise(
@@ -106,7 +106,9 @@ college_reduced %>%
 ```
 -The SAT averages go from the mid-500s to around 1550. The median is about 1116, which means most schools are not super selective, but not weak either. The scores are pretty spread out, so colleges in this dataset vary a lot in competitiveness.
 
-Graduation Rate of Histogram
+
+
+### Graduation Rate of Histogram
 ```{r, echo=FALSE, warning=FALSE}
 ggplot(college_reduced, aes(x = grad_rate_150)) +
   geom_histogram(binwidth = 0.05, fill = "skyblue", color = "black") +
@@ -116,7 +118,10 @@ ggplot(college_reduced, aes(x = grad_rate_150)) +
     y = "Count"
   )
 ```
-SAT Average of Histogram
+-The graduation rate histogram shows that most colleges have graduation rates clustered around the middle, roughly between 0.3 and 0.7. The highest bars appear near the center, which means many schools graduate around half of their students within 150% of the normal time. Very low and very high rates exist, but they are much less common.
+
+
+### SAT Average of Histogram
 ```{r, echo=FALSE, warning=FALSE}
 ggplot(college_reduced, aes(x = sat_avg)) +
   geom_histogram(binwidth = 50, fill = "lightgreen", color = "black") +
@@ -126,7 +131,10 @@ ggplot(college_reduced, aes(x = sat_avg)) +
     y = "Count"
   )
 ```
-Graduation Rate of Boxplot
+-The SAT average scores form a distribution that looks close to a normal shape. Most schools have SAT averages between about 1000 and 1200, and the center is around 1100. There are a few schools with much lower or much higher scores, but overall the scores are tightly grouped, suggesting similar academic selectivity for many colleges.
+
+
+### Graduation Rate of Boxplot
 ```{r, echo=FALSE, warning=FALSE}
 ggplot(college_reduced, aes(y = grad_rate_150)) +
   geom_boxplot(fill = "orange") +
@@ -135,6 +143,8 @@ ggplot(college_reduced, aes(y = grad_rate_150)) +
     y = "Graduation Rate"
   )
 ```
+-The boxplot shows that the middle half of graduation rates is fairly wide, meaning schools vary a lot. The median is close to the middle of the box, so the distribution is balanced. There are also some lower values stretching down toward 0, showing that a number of colleges have low graduation performance.
+
 ## Summary Statistics
 
 
