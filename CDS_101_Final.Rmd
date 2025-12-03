@@ -87,6 +87,9 @@ college_reduced %>%
     max_grad = max(grad_rate_150, na.rm = TRUE)
   )
 ```
+-The graduation rate values range from 0 to 1. The median is around 0.49, so about half of the colleges graduate less than half of their students on time. This suggests that many schools are kind of in the middle rather than extremely high or low.
+
+
 Summary statistics for SAT_AVG
 ```{r, echo=FALSE, warning=FALSE}
 college_reduced %>%
@@ -101,8 +104,37 @@ college_reduced %>%
   )
 
 ```
+-The SAT averages go from the mid-500s to around 1550. The median is about 1116, which means most schools are not super selective, but not weak either. The scores are pretty spread out, so colleges in this dataset vary a lot in competitiveness.
 
-
+Graduation Rate of Histogram
+```{r, echo=FALSE, warning=FALSE}
+ggplot(college_reduced, aes(x = grad_rate_150)) +
+  geom_histogram(binwidth = 0.05, fill = "skyblue", color = "black") +
+  labs(
+    title = "Distribution of Graduation Rate (within 150% time)",
+    x = "Graduation Rate (C150_4)",
+    y = "Count"
+  )
+```
+SAT Average of Histogram
+```{r, echo=FALSE, warning=FALSE}
+ggplot(college_reduced, aes(x = sat_avg)) +
+  geom_histogram(binwidth = 50, fill = "lightgreen", color = "black") +
+  labs(
+    title = "Distribution of SAT Average Scores",
+    x = "SAT Average",
+    y = "Count"
+  )
+```
+Graduation Rate of Boxplot
+```{r, echo=FALSE, warning=FALSE}
+ggplot(college_reduced, aes(y = grad_rate_150)) +
+  geom_boxplot(fill = "orange") +
+  labs(
+    title = "Boxplot of Graduation Rate",
+    y = "Graduation Rate"
+  )
+```
 ## Summary Statistics
 
 
