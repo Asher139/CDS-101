@@ -53,11 +53,11 @@ set.seed(98261936)
 
 ## Introduction
 
-For this project, I am looking at the question: “Does the size or competitiveness of a college affect its degree attainment rate?” I chose C150_4 as my response variable because it shows the share of students who finish their degree within 150% of the usual time. It is one of the clearer numbers in the dataset that relates to graduation.
+In this project, I look at the question, "Does the competitiveness of a college relate to its degree attainment rate?" I chose C150_4 as a response variable because it shows the percentage of students earning degrees within 150% of a typical period. This is one of the clearest indicators of graduation performance on the dataset.
 
-For the explanatory variable, I am using SAT_AVG. The SAT score is not exactly the same as college size, but schools with higher SAT averages usually have more selective admissions and sometimes bigger or more competitive environments. So I thought it could work as a way to compare colleges that are different in scale or difficulty.
+The SAT_AVG was used as an explanatory variable. SAT scores are often used as indicators of a college's selection level or academic competition rate, although they do not directly measure graduation rates. Colleges with higher SAT averages generally accepted outstanding students and had a more competitive academic environment, so they thought that this method was reasonable for comparing the differences between colleges.
 
-Both variables are continuous, so I am planning to use a linear model to see if they move together in some way. I think this topic is interesting. People often talk about whether large schools or hard-to-select schools help students succeed, but it is hard to know without seeing the data in person. I would like to see what the CollegeScorecard dataset actually shows.
+Since both variables are continuous, I want to use a linear model to see if there is a connection between the SAT mean and graduation rate. Many people think that universities with higher competition rates have better outcomes, but this topic comes up interesting because it's hard to know exactly this without looking at real data. This project helped us see what the CollegeScorecard dataset suggests about these patterns.
 
 ## Preprocessing
 ```{r, echo=FALSE}
@@ -107,7 +107,6 @@ college_reduced %>%
 -The SAT averages go from the mid-500s to around 1550. The median is about 1116, which means most schools are not super selective, but not weak either. The scores are pretty spread out, so colleges in this dataset vary a lot in competitiveness.
 
 
-
 ### Graduation Rate of Histogram
 ```{r, echo=FALSE, warning=FALSE}
 ggplot(college_reduced, aes(x = grad_rate_150)) +
@@ -145,6 +144,28 @@ ggplot(college_reduced, aes(y = grad_rate_150)) +
 ```
 -The boxplot shows that the middle half of graduation rates is fairly wide, meaning schools vary a lot. The median is close to the middle of the box, so the distribution is balanced. There are also some lower values stretching down toward 0, showing that a number of colleges have low graduation performance.
 
+### Graduation Rate of Facting 
+```{r, echo=FALSE, warning=FALSE}
+college_reduced <- college_reduced %>%
+  mutate(
+    grad_level = case_when(
+      grad_rate_150 < 0.4 ~ "Low Grad Rate",
+      grad_rate_150 < 0.7 ~ "Medium Grad Rate",
+      TRUE ~ "High Grad Rate"
+    )
+  )
+ggplot(college_reduced, aes(x = sat_avg)) +
+  geom_histogram(binwidth = 50, fill = "purple", color = "black") +
+  facet_wrap(~ grad_level) +
+  labs(
+    title = "SAT Averages by Graduation Rate Levels",
+    x = "SAT Average",
+    y = "Count"
+  ) +
+  theme_minimal()
+```
+-This graph divides the graduation rate into three levels (High, Medium, and Low) and compares how the SAT scores distribute differently in each group. The graph shows that groups with higher graduation rates tend to have higher SAT scores. In contrast, groups with lower graduation rates tend to have more widespread SAT scores and lower median scores. This pattern visually shows the relationship that "the more competitive schools have, the higher the graduation rate" than a simple scatterplot.
+
 ## Summary Statistics
 ### Graduation Rate Summary
 ```{r, echo=FALSE, warning=FALSE}
@@ -174,13 +195,7 @@ college_reduced %>%
 ```
 ## Data Analysis
 ```{r, echo=FALSE, warning=FALSE}
-model <- lm(grad_rate_150 ~ sat_avg, data = college_reduced)
-tidy(model)
-glance(model)
-```
-
-```{r, echo=FALSE, warning=FALSE}
-college_model <- college_reduced %>% 
+college_model <- college_reduced %>%
   drop_na(grad_rate_150, sat_avg)
 model <- lm(grad_rate_150 ~ sat_avg, data = college_model)
 tidy(model)
@@ -238,11 +253,15 @@ ggplot(college_model, aes(sample = residuals)) +
 
 
 
-
-
-
-
-
-
-
 ## Conclusion
+In this project, I compared the average SAT score with the college graduation rate (within 150 percent of the time), and looked at how much SAT scores could explain college graduation performance. Overall, it is true that there is a positive relationship in which the higher the SAT average, the higher the graduation rate. Visualization, summary statistics, and linear model results all show similar patterns.
+
+However, it was also confirmed that the SAT scores did not fully explain the graduation rate, as the model's R-squared value was about 0.66. In other words, schools with higher SAT scores generally have higher graduation rates, but there is a limit to predicting college graduation outcomes based on SAT scores alone. Other factors, such as student aid services, financial conditions, school size, and program quality, are likely to play an important role.
+
+When looking at the three model diagnostic graphs (Observed vs Predicted, Residuals vs Predicted, Q–Q Plot), the linear model is generally not very wrong, but it is difficult to say that it is a perfect model. In particular, the fact that the residuals are not completely evenly spread, and the pattern appears in some sections may be a signal that additional variables are needed.
+
+Overall, I conclude that SAT scores do some good to explain graduation rates, but this alone is not appropriate to evaluate or predict school performance. This analysis suggests that colleges should consider various support systems and environmental factors together in order to improve student performance, rather than simply recruiting high-scoring students.
+
+
+
+
