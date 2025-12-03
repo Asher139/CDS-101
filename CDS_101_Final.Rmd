@@ -146,11 +146,101 @@ ggplot(college_reduced, aes(y = grad_rate_150)) +
 -The boxplot shows that the middle half of graduation rates is fairly wide, meaning schools vary a lot. The median is close to the middle of the box, so the distribution is balanced. There are also some lower values stretching down toward 0, showing that a number of colleges have low graduation performance.
 
 ## Summary Statistics
-
-
-
-
+### Graduation Rate Summary
+```{r, echo=FALSE, warning=FALSE}
+college_reduced %>% 
+  summarise(
+    n_grad = n(),
+    mean_grad = mean(grad_rate_150, na.rm = TRUE),
+    median_grad = median(grad_rate_150, na.rm = TRUE),
+    sd_grad = sd(grad_rate_150, na.rm = TRUE),
+    iqr_grad = IQR(grad_rate_150, na.rm = TRUE),
+    min_grad = min(grad_rate_150, na.rm = TRUE),
+    max_grad = max(grad_rate_150, na.rm = TRUE)
+  )
+```
+### SAT Summary
+```{r, echo=FALSE, warning=FALSE}
+college_reduced %>% 
+  summarise(
+    n_sat = n(),
+    mean_sat = mean(sat_avg, na.rm = TRUE),
+    median_sat = median(sat_avg, na.rm = TRUE),
+    sd_sat = sd(sat_avg, na.rm = TRUE),
+    iqr_sat = IQR(sat_avg, na.rm = TRUE),
+    min_sat = min(sat_avg, na.rm = TRUE),
+    max_sat = max(sat_avg, na.rm = TRUE)
+  )
+```
 ## Data Analysis
+```{r, echo=FALSE, warning=FALSE}
+model <- lm(grad_rate_150 ~ sat_avg, data = college_reduced)
+tidy(model)
+glance(model)
+```
+
+```{r, echo=FALSE, warning=FALSE}
+college_model <- college_reduced %>% 
+  drop_na(grad_rate_150, sat_avg)
+model <- lm(grad_rate_150 ~ sat_avg, data = college_model)
+tidy(model)
+glance(model)
+```
+-Overall, linear models show a slight positive correlation between the SAT averages and graduation rates. Higher SAT averages tend to have slightly higher graduation rates, but R squared values are not very high. This suggests that SAT scores alone do not fully explain graduation scores, and other factors are likely to play a large role.
+
+### Observed vs Predicted Plot
+```{r, echo=FALSE, warning=FALSE}
+college_model$predicted <- predict(model)
+
+ggplot(college_model, aes(x = predicted, y = grad_rate_150)) +
+  geom_point(alpha = 0.4, color = "steelblue") +
+  geom_abline(intercept = 0, slope = 1, color = "red") +
+  labs(
+    title = "Observed vs Predicted Graduation Rate",
+    x = "Predicted Graduation Rate",
+    y = "Observed Graduation Rate"
+  ) +
+  theme_minimal()
+```
+-This graph compares the actual graduation rate with the one predicted by the model. A closer the dot is to the diagonal line (red line), the closer it is to the line in general, but not quite the same. In other words, the SAT averages account for graduation rates to some extent, but show that there are quite a few other effects.
+
+### Residuals vs Predicted plot
+```{r, echo=FALSE, warning=FALSE}
+
+college_model$residuals <- resid(model)
+ggplot(college_model, aes(x = predicted, y = residuals)) +
+  geom_point(alpha = 0.4, color = "orange") +
+  geom_hline(yintercept = 0, color = "red") +
+  labs(
+    title = "Residuals vs Predicted",
+    x = "Predicted Graduation Rate",
+    y = "Residuals"
+  ) +
+  theme_minimal()
+```
+-The residual graph is used to check whether the error is uniformly spread according to the predicted value.
+Here, the dots are scattered around the centerline, but they also show some patterns, so they are not completely ideal.
+This means that the linear model does not account for all the variations.
+
+### Q-Q plot
+```{r, echo=FALSE, warning=FALSE}
+ggplot(college_model, aes(sample = residuals)) +
+  stat_qq(color = "darkgreen") +
+  stat_qq_line(color = "red") +
+  labs(
+    title = "Q-Q Plot of Model Residuals",
+    x = "Theoretical Quantiles",
+    y = "Sample Quantiles"
+  ) +
+  theme_minimal()
+```
+-A Q-Q plot is a graph that verifies that the residuals are normally distributed. Although the points are usually on a straight line, they appear to deviate slightly from the ends. In other words, the model's assumption of normality is not significantly broken, but it is not a perfect fit.
+
+
+
+
+
+
 
 
 
